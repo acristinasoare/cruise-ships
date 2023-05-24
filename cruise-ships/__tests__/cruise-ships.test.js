@@ -11,3 +11,13 @@ describe( Ship, () => {
     });
 });
 
+
+describe('setSail', () => {
+    it('the ship will set sail', () => {
+        const ship = new Ship('Dover');
+
+        ship.setSail();
+
+        expect(ship.startingPort).toBeFalsy();
+    });
+})
