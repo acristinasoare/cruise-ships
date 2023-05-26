@@ -7,33 +7,34 @@ describe( Ship, () => {
     });
 
     it('sets the starting port property', () => {
-        const ship = new Ship(Port);
+        const startingPort = new Port('Edinburgh');
+        const ship = new Ship(startingPort);
         
-        expect(ship.startingPort).toBe(Port);
+        expect(ship.currentPort).toBe(startingPort);
     });
 });
 
 
 describe('setSail', () => {
     it('the ship will set sail', () => {
-        const ship = new Ship(Port);
+        const port = new Port('Edinburgh')
+        const ship = new Ship(port);
 
         ship.setSail();
 
-        expect(ship.startingPort).toBeFalsy();
         expect(ship.currentPort).toBeFalsy();
     });
 });
 
 describe('dock', () => {
     it('the ship will dock at another port', () => {
-        const ship = new Ship(Port);
+        const port = new Port('Edinburgh');
+        const ship = new Ship(port);
+        const newcastle = new Port('Newcastle');
         ship.setSail()
-        const dockingPort = new Port('Newcastle');
-        ship.dock(dockingPort);
+        ship.dock(newcastle);
 
-        expect(ship.currentPort).toBe(dockingPort);
-        expect(ship.startingPort).toBeFalsy();
+        expect(ship.currentPort).toBe(newcastle);
     });
 });
 
