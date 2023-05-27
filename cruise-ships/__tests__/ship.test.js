@@ -1,40 +1,76 @@
-const Ship = require('../src/ship.js')
+const Ship = require('../src/ship.js');
 const Port = require('../src/port.js');
+const Itinerary = require('../src/itinerary.js');
 
 describe( Ship, () => {
     it('it returns an object', () => {
-        expect(new Ship()).toBeInstanceOf(Object)   
+        const edinburgh = new Port('Edinburgh');
+        const newcastle = new Port('Newcastle');
+        const eastCoastItinerary = new Itinerary([edinburgh, newcastle]);
+        const ship = new Ship(eastCoastItinerary);
+
+        expect(ship).toBeInstanceOf(Object)   
     });
 
-    it('sets the starting port property', () => {
-        const startingPort = new Port('Edinburgh');
-        const ship = new Ship(startingPort);
-        
-        expect(ship.currentPort).toBe(startingPort);
+    it('takes an itinerary and has a current port property', () => {
+        const edinburgh = new Port('Edinburgh');
+        const newcastle = new Port('Newcastle');
+        const eastCoastItinerary = new Itinerary([edinburgh, newcastle]);
+        const ship = new Ship(eastCoastItinerary);
+
+        expect(ship.currentPort).toBe(eastCoastItinerary['ports'][0]);
     });
+
+    it('has a previous port property', () => {
+        const edinburgh = new Port('Edinburgh');
+        const newcastle = new Port('Newcastle');
+        const eastCoastItinerary = new Itinerary([edinburgh, newcastle]);
+        const ship = new Ship(eastCoastItinerary);
+
+        expect(ship.previousPort).toBe(null);
+        expect(ship.previousPort).toBeFalsy();
+    })
 });
 
 
 describe('setSail', () => {
     it('the ship will set sail', () => {
-        const port = new Port('Edinburgh')
-        const ship = new Ship(port);
+        const edinburgh = new Port('Edinburgh');
+        const newcastle = new Port('Newcastle');
+        const eastCoastItinerary = new Itinerary([edinburgh, newcastle]);
+        const ship = new Ship(eastCoastItinerary);
 
         ship.setSail();
 
         expect(ship.currentPort).toBeFalsy();
+        expect(ship.previousPort).toBe(eastCoastItinerary['ports'][0]);
     });
+
+    it('can\'t set sail further than its itinerary', () => {
+        const edinburgh = new Port('Edinburgh');
+        const newcastle = new Port('Newcastle');
+        const eastCoastItinerary = new Itinerary([edinburgh, newcastle]);
+        const ship = new Ship(eastCoastItinerary);
+        
+        ship.setSail();
+        ship.dock();
+
+        expect(()=> ship.setSail()).toThrowError('End of itinerary reached');
+    });
+
+    
 });
 
 describe('dock', () => {
-    it('the ship will dock at another port', () => {
-        const port = new Port('Edinburgh');
-        const ship = new Ship(port);
+    it('the ship will dock at the next port in the itinerary', () => {
+        const edinburgh = new Port('Edinburgh');
         const newcastle = new Port('Newcastle');
+        const eastCoastItinerary = new Itinerary([edinburgh, newcastle]);
+        const ship = new Ship(eastCoastItinerary);
         ship.setSail()
-        ship.dock(newcastle);
+        ship.dock();
 
-        expect(ship.currentPort).toBe(newcastle);
+        expect(ship.currentPort).toBe(eastCoastItinerary['ports'][1]);
     });
 });
 

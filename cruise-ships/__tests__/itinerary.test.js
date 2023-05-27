@@ -13,4 +13,4 @@ describe (Itinerary, () => {
         expect(itinerary.ports).toEqual([edinburgh, newcastle]);
 
     })
-})
+});
