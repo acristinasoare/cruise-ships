@@ -53,16 +53,6 @@ describe('setSail', () => {
 
         expect(ship.currentPort).toBeFalsy();
         expect(ship.previousPort).toBe(eastCoastItinerary['ports'][0]);
-    });
-
-    it('the port from which the ship has sailed from will no longer contain the ship into its ships property', () => {
-        const edinburgh = new Port('Edinburgh');
-        const newcastle = new Port('Newcastle');
-        const eastCoastItinerary = new Itinerary([edinburgh, newcastle]);
-        const ship = new Ship(eastCoastItinerary);
-
-        ship.setSail();
-        
         expect(edinburgh.ships).not.toContain(ship);
     });
 
@@ -91,6 +81,7 @@ describe('dock', () => {
         ship.dock();
 
         expect(ship.currentPort).toBe(eastCoastItinerary['ports'][1]);
+        expect(ship.currentPort.ships).toContain(ship);
     });
 });
 
