@@ -30,6 +30,15 @@ describe( Ship, () => {
         expect(ship.previousPort).toBe(null);
         expect(ship.previousPort).toBeFalsy();
     })
+
+    it('gets added to current port on instantiation', () => {
+        const edinburgh = new Port('Edinburgh');
+        const newcastle = new Port('Newcastle');
+        const eastCoastItinerary = new Itinerary([edinburgh, newcastle]);
+        const ship = new Ship(eastCoastItinerary);
+
+        expect(edinburgh.ships).toContain(ship);
+    })
 });
 
 
@@ -44,6 +53,17 @@ describe('setSail', () => {
 
         expect(ship.currentPort).toBeFalsy();
         expect(ship.previousPort).toBe(eastCoastItinerary['ports'][0]);
+    });
+
+    it('the port from which the ship has sailed from will no longer contain the ship into its ships property', () => {
+        const edinburgh = new Port('Edinburgh');
+        const newcastle = new Port('Newcastle');
+        const eastCoastItinerary = new Itinerary([edinburgh, newcastle]);
+        const ship = new Ship(eastCoastItinerary);
+
+        ship.setSail();
+        
+        expect(edinburgh.ships).not.toContain(ship);
     });
 
     it('can\'t set sail further than its itinerary', () => {
@@ -73,4 +93,6 @@ describe('dock', () => {
         expect(ship.currentPort).toBe(eastCoastItinerary['ports'][1]);
     });
 });
+
+
 
