@@ -1,6 +1,4 @@
 const Ship = require('../src/ship.js');
-const Port = require('../src/port.js');
-const Itinerary = require('../src/itinerary.js');
 
 describe( Ship, () => { 
     describe('with ports and an itinerary', () => {
@@ -9,9 +7,21 @@ describe( Ship, () => {
         let eastCoastItinerary;
         let ship;
         beforeEach(() => {
-            edinburgh = new Port('Edinburgh');
-            newcastle = new Port('Newcastle');
-            eastCoastItinerary = new Itinerary([edinburgh, newcastle]);
+            edinburgh = { 
+                name:'Edinburgh', 
+                ships: [], 
+                addShip: jest.fn(), 
+                removeShip: jest.fn(),
+            }
+            newcastle = { 
+                name: 'Newcastle', 
+                ships: [], 
+                addShip: jest.fn(), 
+                removeShip: jest.fn(),
+            }
+            eastCoastItinerary = {
+                ports:[edinburgh, newcastle],
+            };
             ship = new Ship(eastCoastItinerary);
         })
         it('it returns an object', () => {
@@ -34,7 +44,7 @@ describe( Ship, () => {
     
         it('gets added to current port on instantiation', () => {
             
-            expect(edinburgh.ships).toContain(ship);
+            expect(edinburgh.addShip).toHaveBeenCalledWith(ship);
         
         });
 
@@ -44,7 +54,7 @@ describe( Ship, () => {
     
             expect(ship.currentPort).toBeFalsy();
             expect(ship.previousPort).toBe(eastCoastItinerary['ports'][0]);
-            expect(edinburgh.ships).not.toContain(ship);
+            expect(edinburgh.removeShip).toHaveBeenCalledWith(ship);
         });
     
         it('can\'t set sail further than its itinerary', () => {
@@ -61,7 +71,7 @@ describe( Ship, () => {
             ship.dock();
     
             expect(ship.currentPort).toBe(eastCoastItinerary['ports'][1]);
-            expect(ship.currentPort.ships).toContain(ship);
+            expect(newcastle.addShip).toHaveBeenCalledWith(ship);
         });
 
      });

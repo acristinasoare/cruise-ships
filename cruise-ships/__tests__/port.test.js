@@ -1,6 +1,4 @@
 const Port = require('../src/port');
-const Ship = require ('../src/ship.js');
-const Itinerary = require('../src/itinerary.js');
 
 describe (Port, () => {
     it('it returns an object', () => {
@@ -16,7 +14,7 @@ describe (Port, () => {
 describe ('addShip', () => {
     it('adds a ship to the port', () => {
         const edinburgh = new Port('Edinburgh');
-        const ship = {};
+        const ship = jest.fn();
 
         edinburgh.addShip(ship);
 
@@ -28,9 +26,9 @@ describe ('addShip', () => {
 describe('removeShip', () => {
     it('removes a ship from the port', () => {
         const edinburgh = new Port('Edinburgh');
-        const ship1 = {};
-        const ship2 = {};
-        const ship3 = {};
+        const ship1 = jest.fn();
+        const ship2 = jest.fn();
+        const ship3 = jest.fn();
 
         edinburgh.addShip(ship1);
         edinburgh.addShip(ship2);
