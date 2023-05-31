@@ -1,4 +1,4 @@
-# Cruise-Ships 🚢🫧🪸🌊🐬 
+# Cruise-Ships 🛥️🌊🐳🌅
 
 A guided code project written as part of the CommandShift Bootcamp. The aim of the project was to create a JavaScript cruise ship that has the following features
 - the cruise ship receives an itinerary of different ports
@@ -43,4 +43,4 @@ Create an instance of a ship with the itinerary you have just created:
 `const ship = new Ship (tourOfScotland)`
 
 
-Once you've done all of the above, you can start instructing your ship to set sail from its starting port and to dock at the next port in its itinerary. 
+Once you've done all of the above, you can start instructing your ship to set sail from its starting port and to dock at the next port in its itinerary. To check what ships are present in a port type `port.ships` into your command line and return. 
