@@ -41,4 +41,4 @@ Create a ship instance with the itinerary you have just created:
 `const ship = new Ship(tourOfScotland)`    
 
 
-Once you have completed the above steps, you can start giving instructions to your ship to set sail from its initial port and dock at the next port in its itinerary. To view the ships present in a specific port, type *insertPortNameHere*.ships in your command line and press enter.  
+Once you have completed the above steps, you can start giving instructions to your ship to set sail from its initial port and dock at the next port in its itinerary. To view the ships present in a specific port, type *insert-port-name-here*.ships in your command line and press enter.  
