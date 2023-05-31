@@ -1,4 +1,4 @@
-# 🚢 Cruise-Ships 🚢 
+# Cruise-Ships 🚢🫧🪸🌊🐬 
 
 A guided code project written as part of the CommandShift Bootcamp. The aim of the project was to create a JavaScript cruise ship that has the following features
 - the cruise ship receives an itinerary of different ports
