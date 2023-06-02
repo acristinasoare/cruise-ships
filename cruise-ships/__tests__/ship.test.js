@@ -1,4 +1,4 @@
-import Ship from '../src/ship.js';
+const Ship = require('../src/ship');
 
 describe( Ship, () => { 
   describe('with ports and an itinerary', () => {

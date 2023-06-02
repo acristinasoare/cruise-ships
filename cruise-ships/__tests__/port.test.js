@@ -1,4 +1,4 @@
-import Port from '../src/port';
+const Port = require('../src/port.js')
 
 describe (Port, () => {
   it('it returns an object', () => {
