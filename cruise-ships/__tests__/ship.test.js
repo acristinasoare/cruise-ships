@@ -23,14 +23,14 @@ describe( Ship, () => {
         ports:[edinburgh, newcastle],
       };
       ship = new Ship(eastCoastItinerary);
-    })
+    });
   
-    it('it returns an object', () => {
-      expect(ship).toBeInstanceOf(Object)   
+    it('it creates a new object that is an instance of the Ship class', () => {
+      expect(ship).toBeInstanceOf(Object);   
     });
 
     it('takes an itinerary and has a current port property', () => {
-      expect(ship.currentPort).toBe(eastCoastItinerary['ports'][0]);
+      expect(ship.currentPort).toBe(eastCoastItinerary.ports[0]);
     });
     
     it('has a previous port property', () => {
@@ -46,7 +46,7 @@ describe( Ship, () => {
       ship.setSail();
     
       expect(ship.currentPort).toBeFalsy();
-      expect(ship.previousPort).toBe(eastCoastItinerary['ports'][0]);
+      expect(ship.previousPort).toBe(eastCoastItinerary.ports[0]);
       expect(edinburgh.removeShip).toHaveBeenCalledWith(ship);
     });
     
@@ -58,10 +58,10 @@ describe( Ship, () => {
     });
 
     it('the ship will dock at the next port in the itinerary', () => {
-      ship.setSail()
+      ship.setSail();
       ship.dock();
     
-      expect(ship.currentPort).toBe(eastCoastItinerary['ports'][1]);
+      expect(ship.currentPort).toBe(eastCoastItinerary.ports[1]);
       expect(newcastle.addShip).toHaveBeenCalledWith(ship);
     });
   });

@@ -1,7 +1,7 @@
 const Itinerary = require('../src/itinerary.js')
 
-describe (Itinerary, () => {
-  it('creates a new Itinerary object', () => {
+describe ('Itinerary', () => {
+  it('creates a new object that is an instance of the Itinerary class', () => {
     expect(new Itinerary()).toBeInstanceOf(Object);
   });
 
